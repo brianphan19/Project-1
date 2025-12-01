@@ -124,28 +124,47 @@ class VectorDB:
 
         print("Documents added to vector database")
 
-    def search(self, query: str, n_results: int = 5) -> Dict[str, Any]:
+    def search(self, query: str, n_results: int = 5) -> dict[str, any]:
         """
-        Search for similar documents in the vector database.
+        Search for similar documents in the vector database using a query string.
+
+        The query is converted into an embedding using the embedding model,
+        then the vector database is queried to find the closest matches.
 
         Args:
-            query: Search query
-            n_results: Number of results to return
+            query (str): The search query.
+            n_results (int, optional): Number of top results to return. Defaults to 5.
 
         Returns:
-            Dictionary containing search results with keys: 'documents', 'metadatas', 'distances', 'ids'
+            dict: A dictionary containing search results with keys:
+                - 'documents' (list[str]): The text content of matched chunks.
+                - 'metadatas' (list[dict]): Metadata associated with each chunk.
+                - 'distances' (list[float]): Similarity distances between query and chunk.
+                - 'ids' (list[str]): Unique IDs of the matched chunks.
         """
-        # TODO: Implement similarity search logic
-        # HINT: Use self.embedding_model.encode([query]) to create query embedding
-        # HINT: Convert the embedding to appropriate format for your vector database
-        # HINT: Use your vector database's search/query method with the query embedding and n_results
-        # HINT: Return a dictionary with keys: 'documents', 'metadatas', 'distances', 'ids'
-        # HINT: Handle the case where results might be empty
+        # Step 1: Create query embedding
+        query_embedding = self.embedding_model.encode([query])
 
-        # Your implementation here
+        # Step 2: Search the vector database
+        results = self.collection.query(
+            query_embeddings=query_embedding,
+            n_results=n_results,
+            include=["documents", "metadatas", "distances", "ids"]
+        )
+
+        # Step 3: Handle case when no results are returned
+        if not results or not results["documents"]:
+            return {
+                "documents": [],
+                "metadatas": [],
+                "distances": [],
+                "ids": [],
+            }
+
+        # Step 4: Return the structured results
         return {
-            "documents": [],
-            "metadatas": [],
-            "distances": [],
-            "ids": [],
+            "documents": results.get("documents", []),
+            "metadatas": results.get("metadatas", []),
+            "distances": results.get("distances", []),
+            "ids": results.get("ids", []),
         }
