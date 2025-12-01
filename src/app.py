@@ -1,12 +1,11 @@
 import os
-from typing import List
+from typing import Any, Dict, List
 from dotenv import load_dotenv
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from vectordb import VectorDB
 from langchain_openai import ChatOpenAI
-from langchain_groq import ChatGroq
-from langchain_google_genai import ChatGoogleGenerativeAI
+
 
 # Load environment variables
 load_dotenv()
@@ -76,11 +75,26 @@ class RAGAssistant:
         self.vector_db = VectorDB()
 
         # Create RAG prompt template
-        # TODO: Implement your RAG prompt template
-        # HINT: Use ChatPromptTemplate.from_template() with a template string
-        # HINT: Your template should include placeholders for {context} and {question}
-        # HINT: Design your prompt to effectively use retrieved context to answer questions
-        self.prompt_template = None  # Your implementation here
+        self.prompt_template = ChatPromptTemplate.from_template(
+                """
+            You are a helpful AI assistant. Use the retrieved context below to answer the user's question.
+
+            --- Retrieved Context ---
+            {context}
+            --------------------------
+
+            Instructions:
+            - Base your answer only on the provided context whenever possible.
+            - If the context does not contain enough information, say so clearly and give the best general answer you can.
+            - Do NOT make up facts that are not supported by the context.
+            - Be concise and direct.
+
+            User Question:
+            {question}
+
+            Answer:
+            """
+        )
 
         # Create the chain
         self.chain = self.prompt_template | self.llm | StrOutputParser()
@@ -100,22 +114,6 @@ class RAGAssistant:
                 api_key=os.getenv("OPENAI_API_KEY"), model=model_name, temperature=0.0
             )
 
-        elif os.getenv("GROQ_API_KEY"):
-            model_name = os.getenv("GROQ_MODEL", "llama-3.1-8b-instant")
-            print(f"Using Groq model: {model_name}")
-            return ChatGroq(
-                api_key=os.getenv("GROQ_API_KEY"), model=model_name, temperature=0.0
-            )
-
-        elif os.getenv("GOOGLE_API_KEY"):
-            model_name = os.getenv("GOOGLE_MODEL", "gemini-2.0-flash")
-            print(f"Using Google Gemini model: {model_name}")
-            return ChatGoogleGenerativeAI(
-                google_api_key=os.getenv("GOOGLE_API_KEY"),
-                model=model_name,
-                temperature=0.0,
-            )
-
         else:
             raise ValueError(
                 "No valid API key found. Please set one of: OPENAI_API_KEY, GROQ_API_KEY, or GOOGLE_API_KEY in your .env file"
@@ -130,7 +128,7 @@ class RAGAssistant:
         """
         self.vector_db.add_documents(documents)
 
-    def invoke(self, input: str, n_results: int = 3) -> str:
+    def query(self, input: str, n_results: int = 3) -> Dict[str, Any]:
         """
         Query the RAG assistant.
 
@@ -141,15 +139,36 @@ class RAGAssistant:
         Returns:
             Dictionary containing the answer and retrieved context
         """
-        llm_answer = ""
-        # TODO: Implement the RAG query pipeline
-        # HINT: Use self.vector_db.search() to retrieve relevant context chunks
-        # HINT: Combine the retrieved document chunks into a single context string
-        # HINT: Use self.chain.invoke() with context and question to generate the response
-        # HINT: Return a string answer from the LLM
+        # 1. Retrieve relevant documents
+        search_results = self.vector_db.search(query=input, n_results=n_results)
 
-        # Your implementation here
-        return llm_answer
+        # search_results expected shape:
+        # {
+        #   "ids": [...],
+        #   "documents": [...],
+        #   "metadatas": [...],
+        #   "distances": [...]
+        # }
+
+        retrieved_docs = search_results.get("documents", [])
+        combined_context = "\n\n".join(retrieved_docs)
+
+        # 2. Invoke LLM chain
+        llm_response = self.chain.invoke({
+            "context": combined_context,
+            "question": input
+        })
+
+        # Some LangChain LLMs return .content, others return raw str
+        answer = llm_response.get("answer") if isinstance(llm_response, dict) else llm_response
+
+        # 3. Return structured response
+        return {
+            "question": input,
+            "answer": answer,
+            "context_used": retrieved_docs,
+            "raw_retrieval": search_results
+        }
 
 
 def main():
