@@ -88,10 +88,14 @@ class RAGAssistant:
             --- Retrieved Context ---
             {context}
             --------------------------
+            
+            Communication style:
+            - Use clear, concise language with bullet points when approriate
 
             Instructions:
-            - Base your answer only on the provided context whenever possible.
+            - Base your answer only on the provided context.
             - If the context does not contain enough information, say so clearly and give the best general answer you can.
+            - If a question goes beyond scope, politely refuse: "I'm sorry, that information is not in the documents."
             - Do NOT make up facts that are not supported by the context.
             - Be concise and direct.
 
