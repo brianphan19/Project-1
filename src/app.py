@@ -11,21 +11,48 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 # Load environment variables
 load_dotenv()
 
+# Document directory
+_CONTENT_DIR = "data"
 
 def load_documents() -> List[str]:
     """
-    Load documents for demonstration.
+    Load all text (.txt) documents from the `_CONTENT_DIR` directory.
+
+    Each document is read as a string, and metadata about the file
+    (filename and full path) is attached.
 
     Returns:
-        List of sample documents
+        List[dict]: A list of dictionaries, each containing:
+            - 'content' (str): The text content of the file.
+            - 'metadata' (dict): Metadata about the file, including:
+                - 'filename' (str): The name of the file.
+                - 'full_path' (str): The relative path to the file.
+    
+    Notes:
+        - Files that cannot be read will be skipped, and an error will
+          be printed to the console.
+        - Only files ending with '.txt' are considered.
     """
     results = []
-    # TODO: Implement document loading
-    # HINT: Read the documents from the data directory
-    # HINT: Return a list of documents
-    # HINT: Your implementation depends on the type of documents you are using (.txt, .pdf, etc.)
+    txt_files = [f for f in os.listdir(_CONTENT_DIR) if f.endswith(".txt")]
+    
+    for file_path in txt_files:
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            metadata = {
+                "filename": os.path.basename(file_path),
+                "full_path": file_path,
+            }
 
-    # Your implementation here
+            results.append({
+                "content": content,
+                "metadata": metadata
+            })
+        except Exception as e:
+            print(f"Error loading document {file_path}: {e}")
+
     return results
 
 
