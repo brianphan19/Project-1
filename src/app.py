@@ -34,23 +34,26 @@ def load_documents() -> List[str]:
     """
     results = []
     txt_files = [f for f in os.listdir(_CONTENT_DIR) if f.endswith(".txt")]
-    
-    for file_path in txt_files:
+
+    for fname in txt_files:
         try:
-            with open(file_path, 'r', encoding='utf-8') as f:
+            full_path = os.path.join(_CONTENT_DIR, fname)
+
+            with open(full_path, 'r', encoding='utf-8') as f:
                 content = f.read()
-            
+
             metadata = {
-                "filename": os.path.basename(file_path),
-                "full_path": file_path,
+                "filename": fname,
+                "full_path": full_path,
             }
 
             results.append({
                 "content": content,
                 "metadata": metadata
             })
+
         except Exception as e:
-            print(f"Error loading document {file_path}: {e}")
+            print(f"Error loading document {fname}: {e}")
 
     return results
 

@@ -142,29 +142,25 @@ class VectorDB:
                 - 'distances' (list[float]): Similarity distances between query and chunk.
                 - 'ids' (list[str]): Unique IDs of the matched chunks.
         """
-        # Step 1: Create query embedding
         query_embedding = self.embedding_model.encode([query])
 
-        # Step 2: Search the vector database
         results = self.collection.query(
             query_embeddings=query_embedding,
             n_results=n_results,
             include=["documents", "metadatas", "distances", "ids"]
         )
 
-        # Step 3: Handle case when no results are returned
         if not results or not results["documents"]:
             return {
+                "ids": [],
                 "documents": [],
                 "metadatas": [],
                 "distances": [],
-                "ids": [],
             }
 
-        # Step 4: Return the structured results
         return {
+            "ids": results.get("ids", []),
             "documents": results.get("documents", []),
             "metadatas": results.get("metadatas", []),
             "distances": results.get("distances", []),
-            "ids": results.get("ids", []),
         }
