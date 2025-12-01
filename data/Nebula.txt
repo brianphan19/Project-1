@@ -1,0 +1,95 @@
+A nebula (Latin for 'cloud, fog';[1] pl. nebulae or nebulas)[2][3][4][5] is a distinct luminescent part of interstellar medium, which can consist of ionized, neutral, or molecular hydrogen and also cosmic dust. Nebulae are often star-forming regions, such as the Pillars of Creation in the Eagle Nebula. In these regions, the formations of gas, dust, and other materials "clump" together to form denser regions, which attract further matter and eventually become dense enough to form stars. The remaining material is then thought to form planets and other planetary system objects.
+
+Most nebulae are of vast size; some are hundreds of light-years in diameter. A nebula that is visible to the human eye from Earth would appear larger, but no brighter, from close by.[6] The Orion Nebula, the brightest nebula in the sky and occupying an area twice the angular diameter of the full Moon, can be viewed with the naked eye but was missed by early astronomers.[7] Although denser than the space surrounding them, most nebulae are far less dense than any vacuum created on Earth (105 to 107 molecules per cubic centimeter) – a nebular cloud the size of the Earth would have a total mass of only a few kilograms. Earth's air has a density of approximately 1019 molecules per cubic centimeter; by contrast, the densest nebulae can have densities of 104 molecules per cubic centimeter. Many nebulae are visible due to fluorescence caused by embedded hot stars, while others are so diffused that they can be detected only with long exposures and special filters. Some nebulae are variably illuminated by T Tauri variable stars.
+
+Originally, the term "nebula" was used to describe any diffused astronomical object, including galaxies beyond the Milky Way. The Andromeda Galaxy, for instance, was once referred to as the Andromeda Nebula (and spiral galaxies in general as "spiral nebulae") before the true nature of galaxies was confirmed in the early 20th century by Vesto Slipher, Edwin Hubble, and others. Edwin Hubble discovered that most nebulae are associated with stars and illuminated by starlight. He also helped categorize nebulae based on the type of light spectra they produced.[8]
+Observational history
+Portion of the Carina Nebula
+
+Around 150 AD, Ptolemy recorded, in books VII–VIII of his Almagest, five stars that appeared nebulous. He also noted a region of nebulosity between the constellations Ursa Major and Leo that was not associated with any star.[9] The first true nebula, as distinct from a star cluster, was mentioned by the Muslim Persian astronomer Abd al-Rahman al-Sufi in his Book of Fixed Stars (964).[10] He noted "a little cloud" where the Andromeda Galaxy is located.[11] He also cataloged the Omicron Velorum star cluster as a "nebulous star" and other nebulous objects, such as Brocchi's Cluster.[10] The supernovas that created the Crab Nebula, SN 1054, was observed by Arabic and Chinese astronomers in 1054.[12][13]
+
+In 1610, Nicolas-Claude Fabri de Peiresc discovered the Orion Nebula using a telescope. This nebula was also observed by Johann Baptist Cysat in 1618. However, the first detailed study of the Orion Nebula was not performed until 1659 by Christiaan Huygens, who also believed he was the first person to discover this nebulosity.[11]
+
+In 1715, Edmond Halley published a list of six nebulae.[14] This number steadily increased during the century, with Jean-Philippe de Cheseaux compiling a list of 20 (including eight not previously known) in 1746. From 1751 to 1753, Nicolas-Louis de Lacaille cataloged 42 nebulae from the Cape of Good Hope, most of which were previously unknown. Charles Messier then compiled a catalog of 103 "nebulae" (now called Messier objects, which included what are now known to be galaxies) by 1781; his interest was detecting comets, and these were objects that might be mistaken for them.[15]
+
+The number of nebulae was then greatly increased by the efforts of William Herschel and his sister, Caroline Herschel. Their Catalogue of One Thousand New Nebulae and Clusters of Stars[16] was published in 1786. A second catalog of a thousand was published in 1789, and the third and final catalog of 510 appeared in 1802. During much of their work, William Herschel believed that these nebulae were merely unresolved clusters of stars. In 1790, however, he discovered a star surrounded by nebulosity and concluded that this was a true nebulosity rather than a more distant cluster.[15]
+
+Beginning in 1864, William Huggins examined the spectra of about 70 nebulae. He found that roughly a third of them had the emission spectrum of a gas. The rest showed a continuous spectrum and were thus thought to consist of a mass of stars.[17][18] A third category was added in 1912 when Vesto Slipher showed that the spectrum of the nebula that surrounded the star Merope matched the spectra of the Pleiades open cluster. Thus, the nebula radiates by reflected star light.[19]
+
+In 1923, following the Great Debate, it became clear that many "nebulae" were in fact galaxies far from the Milky Way.
+
+Slipher and Edwin Hubble continued to collect the spectra from many different nebulae, finding 29 that showed emission spectra and 33 that had the continuous spectra of star light.[18] In 1922, Hubble announced that nearly all nebulae are associated with stars and that their illumination comes from star light. He also discovered that the emission spectrum nebulae are nearly always associated with stars having spectral classifications of B or hotter (including all O-type main sequence stars), while nebulae with continuous spectra appear with cooler stars.[20] Both Hubble and Henry Norris Russell concluded that the nebulae surrounding the hotter stars are transformed in some manner.[18]
+Formation
+NGC 604, a nebula in the Triangulum Galaxy
+
+There are a variety of formation mechanisms for the different types of nebulae. Some nebulae form from gas that is already in the interstellar medium while others are produced by stars. Examples of the former case are giant molecular clouds, the coldest, densest phase of interstellar gas, which can form by the cooling and condensation of more diffuse gas. Examples of the latter case are planetary nebulae formed from material shed by a star in late stages of its stellar evolution.
+
+Star-forming regions are a class of emission nebula associated with giant molecular clouds. These form as a molecular cloud collapses under its own weight, producing stars. Massive stars may form in the center, and their ultraviolet radiation ionizes the surrounding gas, making it visible at optical wavelengths. The region of ionized hydrogen surrounding the massive stars is known as an H II region while the shells of neutral hydrogen surrounding the H II region are known as photodissociation region. Examples of star-forming regions are the Orion Nebula, the Rosette Nebula and the Omega Nebula. Feedback from star-formation, in the form of supernova explosions of massive stars, stellar winds or ultraviolet radiation from massive stars, or outflows from low-mass stars may disrupt the cloud, destroying the nebula after several million years.
+
+Other nebulae form as the result of supernova explosions; the death throes of massive, short-lived stars. The materials thrown off from the supernova explosion are then ionized by the energy and the compact object that its core produces. One of the best examples of this is the Crab Nebula, in Taurus. The supernova event was recorded in the year 1054 and is labeled SN 1054. The compact object that was created after the explosion lies in the center of the Crab Nebula and its core is now a neutron star.
+
+Still other nebulae form as planetary nebulae. This is the final stage of a low-mass star's life, like Earth's Sun. Stars with a mass up to 8–10 solar masses evolve into red giants and slowly lose their outer layers during pulsations in their atmospheres. When a star has lost enough material, its temperature increases and the ultraviolet radiation it emits can ionize the surrounding nebula that it has thrown off. The Sun will produce a planetary nebula and its core will remain behind in the form of a white dwarf.
+Types
+
+    Herbig–Haro HH 161 and HH 164.[21]
+    Herbig–Haro HH 161 and HH 164.[21]
+    The Omega Nebula, an example of an emission nebula
+    The Omega Nebula, an example of an emission nebula
+    The Horsehead Nebula, an example of a dark nebula.
+    The Horsehead Nebula, an example of a dark nebula.
+    The Cat's Eye Nebula, an example of a planetary nebula.
+    The Cat's Eye Nebula, an example of a planetary nebula.
+    The Red Rectangle Nebula, an example of a protoplanetary nebula.
+    The Red Rectangle Nebula, an example of a protoplanetary nebula.
+    The delicate shell of SNR B0509-67.5
+    The delicate shell of SNR B0509-67.5
+    Tycho Supernova remnant in X-ray light
+    Tycho Supernova remnant in X-ray light
+    Southern Ring Nebula, Planetary Nebula
+    Southern Ring Nebula, Planetary Nebula
+    Ring Nebula in the northern constellation of Lyra
+    Ring Nebula in the northern constellation of Lyra
+
+Classical types
+
+Objects named nebulae belong to four major groups. Before their nature was understood, galaxies ("spiral nebulae") and star clusters too distant to be resolved as stars were also classified as nebulae, but no longer are.
+
+    H II regions, large diffuse nebulae containing ionized hydrogen
+    Planetary nebulae
+    Supernova remnants (e.g., Crab Nebula)
+    Dark nebulae
+
+Not all cloud-like structures are nebulae; Herbig–Haro objects are an example.
+Flux Nebulae
+Main article: Integrated Flux Nebula
+This section is an excerpt from Integrated Flux Nebula.[edit]
+M81 (upper right), M82 (left), and NGC 3077 (bottom right) with a large complex of IFN
+
+Integrated flux nebulae are a relatively recently identified astronomical phenomenon. In contrast to the typical and well-known gaseous nebulae within the plane of the Milky Way galaxy, IFNs lie beyond the main body of the galaxy.
+The term was coined by Steve Mandel, who defined them as "high galactic latitude nebulae that are illuminated not by a single star (as most nebulae in the plane of the galaxy are) but by the energy from the integrated flux of all the stars in the Milky Way. As a result, these nebulae are incredibly faint, taking hours of exposure to capture. These nebulae clouds, an important component of the interstellar medium, are composed of dust particles, hydrogen and carbon monoxide, and some other elements."[22] They are particularly prominent in the direction of both the north and south celestial poles. The vast nebula close to the south celestial pole is MW9, commonly known as the South Celestial Serpent.[23]
+Diffuse nebulae
+The Carina Nebula is an example of a diffuse nebula
+
+Most nebulae can be described as diffuse nebulae, which means that they are extended and contain no well-defined boundaries.[24] Diffuse nebulae can be divided into emission nebulae, reflection nebulae and dark nebulae.
+
+Visible light nebulae may be divided into emission nebulae, which emit spectral line radiation from excited or ionized gas (mostly ionized hydrogen);[25] they are often called H II regions, (H II referring to ionized hydrogen), and reflection nebulae which are visible primarily due to the light they reflect.
+
+Reflection nebulae themselves do not emit significant amounts of visible light, but are near stars and reflect light from them.[25] Similar nebulae not illuminated by stars do not exhibit visible radiation, but may be detected as opaque clouds blocking light from luminous objects behind them; they are called dark nebulae.[25]
+
+Although these nebulae have different visibility at optical wavelengths, they are all bright sources of infrared emission, chiefly from dust within the nebulae.[25]
+Planetary nebulae
+Main article: Planetary nebula
+The Oyster Nebula is a planetary nebula located in the constellation of Camelopardalis
+
+Planetary nebulae are the remnants of the final stages of stellar evolution for mid-mass stars (varying in size between 0.5-~8 solar masses). Evolved asymptotic giant branch stars expel their outer layers outwards due to strong stellar winds, thus forming gaseous shells while leaving behind the star's core in the form of a white dwarf.[25] Radiation from the hot white dwarf excites the expelled gases, producing emission nebulae with spectra similar to those of emission nebulae found in star formation regions.[25] They are H II regions, because mostly hydrogen is ionized, but planetary are denser and more compact than nebulae found in star formation regions.[25]
+
+Planetary nebulae were given their own name by the first astronomical observers who were initially unable to distinguish them from planets, which were of more interest to them. The Sun is expected to spawn a planetary nebula about 12 billion years after its formation.[26]
+Protoplanetary nebulae
+Main article: Protoplanetary nebula
+This section is an excerpt from Protoplanetary nebula.[edit]
+The Westbrook Nebula, a protoplanetary nebula.
+A protoplanetary nebula or preplanetary nebula[27] (PPN, plural PPNe) is an astronomical object which is at the short-lived episode during a star's rapid evolution between the late asymptotic giant branch (LAGB)[a] phase and the subsequent planetary nebula (PN) phase. A PPN emits strongly in infrared radiation, and is a kind of reflection nebula. It is the second-from-the-last high-luminosity evolution phase in the life cycle of intermediate-mass stars (1–8 M☉).[28]: 469 
+Supernova remnants
+The Crab Nebula, an example of a supernova remnant
+
+A supernova occurs when a high-mass star reaches the end of its life. When nuclear fusion in the core of the star stops, the star collapses. The gas falling inward either rebounds or gets so strongly heated that it expands outwards from the core, thus causing the star to explode.[25] The expanding shell of gas forms a supernova remnant, a special diffuse nebula.[25] Although much of the optical and X-ray emission from supernova remnants originates from ionized gas, a great amount of the radio emission is a form of non-thermal emission called synchrotron emission.[25] This emission originates from high-velocity electrons oscillating within magnetic fields. 
