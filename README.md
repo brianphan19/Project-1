@@ -1,6 +1,7 @@
+
 # RAG Assistant
 
-A Retrieval-Augmented Generation (RAG) assistant that answers user queries using a collection of local documents. It retrieves relevant text chunks from your document database and generates responses using an LLM.
+A **Retrieval-Augmented Generation (RAG)** assistant that answers user queries using a collection of local documents. It retrieves relevant text chunks from your document database and generates responses using an LLM.
 
 ---
 
@@ -8,9 +9,9 @@ A Retrieval-Augmented Generation (RAG) assistant that answers user queries using
 
 - Retrieves relevant chunks from local text files using embeddings.
 - Supports multiple LLM backends:
-  - OpenAI (gpt-3.5-turbo, gpt-4o-mini)
-  - Groq
-  - Google Gemini
+  - OpenAI (`gpt-3.5-turbo`, `gpt-4o-mini`)  
+  - LLaMA 3 / MPT via Groq or HuggingFace  
+  - LLM7 free-tier API  
 - Handles document metadata and context tracking.
 - Works offline with local models to avoid API quotas.
 
@@ -18,61 +19,76 @@ A Retrieval-Augmented Generation (RAG) assistant that answers user queries using
 
 ## Project Structure
 
+```
 .
 ├─ data/                  # Folder containing text documents
 ├─ .env                   # Environment variables with API keys
 ├─ rag_assistant.py       # Main RAG assistant code
 ├─ requirements.txt       # Python dependencies
 └─ README.md
+```
 
 ---
 
 ## Setup
 
-1. Clone the repo:
+1. **Clone the repo**:
 
-    git clone <your-repo-url>
-    cd <repo-folder>
+```bash
+git clone <your-repo-url>
+cd <repo-folder>
+```
 
-2. Install dependencies:
+2. **Install dependencies**:
 
-    pip install -r requirements.txt
+```bash
+pip install -r requirements.txt
+```
 
-3. Create a `.env` file in the root folder:
+3. **Create a `.env` file** in the root folder:
 
-    # OpenAI (optional)
-    OPENAI_API_KEY=your_openai_key
-    OPENAI_MODEL=gpt-3.5-turbo
+```dotenv
+# OpenAI (optional)
+OPENAI_API_KEY=your_openai_key
+OPENAI_MODEL=gpt-3.5-turbo
 
-    # Groq / Local models (optional)
-    GROQ_API_KEY=your_groq_key
+# LLM7 (optional)
+LLM7_API_KEY=unused
 
-    # Content directory
-    CONTENT_DIR=./data
+# Groq / Local models (optional)
+GROQ_API_KEY=your_groq_key
+
+# Content directory
+CONTENT_DIR=./data
+```
 
 ---
 
 ## Usage
 
-1. Load documents  
+1. **Load documents**  
    Place `.txt` files in the `data/` folder. The assistant will read them, split into chunks, and store embeddings for retrieval.
 
-2. Run the RAG assistant:
+2. **Run the RAG assistant**:
 
-    from rag_assistant import RAGAssistant
+```python
+from rag_assistant import RAGAssistant
 
-    rag = RAGAssistant()
-    while True:
-        query = input("Enter a question or 'quit' to exit: ")
-        if query.lower() == "quit":
-            break
-        result = rag.query(query)
-        print("Answer:", result["answer"])
+rag = RAGAssistant()
+while True:
+    query = input("Enter a question or 'quit' to exit: ")
+    if query.lower() == "quit":
+        break
+    result = rag.query(query)
+    print("Answer:", result["answer"])
+```
 
-3. Example query:
+3. **Example query**:
 
-    Enter a question or 'quit' to exit: What is an asteroid?
-    Answer: ...
+```
+Enter a question or 'quit' to exit: What is an asteroid?
+Answer: ...
+```
 
 ---
 
@@ -84,35 +100,37 @@ A Retrieval-Augmented Generation (RAG) assistant that answers user queries using
 | LLM7          | Free-tier key (unused)              | Good for low-rate free usage                |
 | Local Models  | MPT-7B, LLaMA 3 7B, Falcon 7B      | Fully free, requires GPU for speed          |
 
-Recommended for avoiding quota limits: Local models or LLM7.
+> Recommended for avoiding quota limits: **Local models or LLM7**.
 
 ---
 
 ## Notes / Tips
 
-- Document loading fix: `_CONTENT_DIR` is joined with filenames to prevent FileNotFound errors.
-- Avoid irrelevant retrievals:
+- **Document loading fix**: `_CONTENT_DIR` is joined with filenames to prevent FileNotFound errors.
+- **Avoid irrelevant retrievals**:
   - Reduce `n_results` for generic queries.
   - Use similarity thresholds.
-- Embedding considerations: better embeddings reduce irrelevant chunks and improve answer accuracy.
-- Short test queries: If a query is too vague (like "test"), consider skipping retrieval or returning a generic response.
-- LLM7 usage: For free-tier usage, set `LLM7_API_KEY=unused`. Use the default or "fast"/"pro" models in the client API.
-- OpenAI quotas: Free-tier OpenAI accounts may hit 429 errors when credits are exhausted.
+- **Embedding considerations**: better embeddings reduce irrelevant chunks and improve answer accuracy.
+- **Short test queries**: If a query is too vague (like `"test"`), consider skipping retrieval or returning a generic response.
+- **LLM7 usage**: For free-tier usage, set `LLM7_API_KEY=unused`. Use the default or "fast"/"pro" models in the client API.
+- **OpenAI quotas**: Free-tier OpenAI accounts may hit 429 errors when credits are exhausted.
 
 ---
 
 ## Dependencies
 
 - Python 3.10+  
-- openai (for OpenAI & LLM7 API)  
-- chromadb or other vector database backend  
-- sentence-transformers (for embeddings)  
-- python-dotenv (for `.env` loading)  
-- langchain (optional, for LLM chaining)
+- `openai` (for OpenAI & LLM7 API)  
+- `chromadb` or other vector database backend  
+- `sentence-transformers` (for embeddings)  
+- `python-dotenv` (for `.env` loading)  
+- `langchain` (optional, for LLM chaining)
 
 Install all dependencies:
 
-    pip install openai chromadb sentence-transformers python-dotenv langchain
+```bash
+pip install openai chromadb sentence-transformers python-dotenv langchain
+```
 
 ---
 
