@@ -105,13 +105,14 @@ Answer: ...
 
 ## Supported LLM Backends
 
-| Backend       | Free Tier Options                   | Notes                                        |
-|---------------|------------------------------------|---------------------------------------------|
-| OpenAI GPT    | Free trial credits                  | 429 errors if quota exceeded                |
-| LLM7          | Free-tier key (unused)              | Good for low-rate free usage                |
-| Local Models  | MPT-7B, LLaMA 3 7B, Falcon 7B      | Fully free, requires GPU for speed          |
+| Backend         | Free Tier Options                   | Notes                                        |
+|-----------------|------------------------------------|---------------------------------------------|
+| OpenAI GPT      | Free trial credits                  | 429 errors if quota exceeded                |
+| Groq LLaMA 3.1  | Free trial / local testing          | Supports instant and batch inference        |
+| Google Gemini   | Free-tier API access                | May require account setup and quota limits  |
 
-> Recommended for avoiding quota limits: **Local models or LLM7**.
+> Recommended for avoiding quota limits: use local models via Groq or manage quotas on OpenAI/Google Gemini.
+
 
 ---
 
@@ -131,7 +132,6 @@ Answer: ...
 ## Dependencies
 
 - Python 3.10+  
-- `openai` (for OpenAI & LLM7 API)  
 - `chromadb` or other vector database backend  
 - `sentence-transformers` (for embeddings)  
 - `python-dotenv` (for `.env` loading)  
