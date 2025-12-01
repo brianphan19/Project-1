@@ -2,7 +2,7 @@ import os
 import chromadb
 from typing import List, Dict, Any
 from sentence_transformers import SentenceTransformer
-
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 class VectorDB:
     """
@@ -37,60 +37,91 @@ class VectorDB:
             metadata={"description": "RAG document collection"},
         )
 
+        # Initialize the text splitter for chunking text
+        self.text_splitter = RecursiveCharacterTextSplitter(
+            chunk_size=500,
+            chunk_overlap=50,
+            separators=["\n\n", "\n", ". ", " ", ""]
+        )
+
         print(f"Vector database initialized with collection: {self.collection_name}")
 
-    def chunk_text(self, text: str, chunk_size: int = 500) -> List[str]:
+    def chunk_text(self, text: str, chunk_size: int = 500) -> list[str]:
         """
-        Simple text chunking by splitting on spaces and grouping into chunks.
+        Split a text string into smaller chunks using the configured text splitter.
+
+        This method uses LangChain's RecursiveCharacterTextSplitter to handle
+        sentence boundaries and preserve context better than simple splitting.
 
         Args:
-            text: Input text to chunk
-            chunk_size: Approximate number of characters per chunk
+            text (str): The input text to be chunked.
+            chunk_size (int, optional): Approximate number of characters per chunk.
+                Defaults to 500.
 
         Returns:
-            List of text chunks
+            list[str]: A list of text chunks.
         """
-        # TODO: Implement text chunking logic
-        # You have several options for chunking text - choose one or experiment with multiple:
-        #
-        # OPTION 1: Simple word-based splitting
-        #   - Split text by spaces and group words into chunks of ~chunk_size characters
-        #   - Keep track of current chunk length and start new chunks when needed
-        #
-        # OPTION 2: Use LangChain's RecursiveCharacterTextSplitter
-        #   - from langchain_text_splitters import RecursiveCharacterTextSplitter
-        #   - Automatically handles sentence boundaries and preserves context better
-        #
-        # OPTION 3: Semantic splitting (advanced)
-        #   - Split by sentences using nltk or spacy
-        #   - Group semantically related sentences together
-        #   - Consider paragraph boundaries and document structure
-        #
-        # Feel free to try different approaches and see what works best!
-
-        chunks = []
-        # Your implementation here
-
+        # Update the text splitter's chunk size if different from requested
+        if chunk_size != self.text_splitter._chunk_size:
+            self.text_splitter._chunk_size = chunk_size
+        
+        # Split the text into chunks
+        chunks = self.text_splitter.split_text(text=text)
         return chunks
 
-    def add_documents(self, documents: List) -> None:
+    def add_documents(self, documents: list[dict]):
         """
-        Add documents to the vector database.
+        Process a list of documents and add them to the vector database.
+
+        Each document is split into text chunks, metadata is attached to
+        each chunk, embeddings are created, and the chunks are stored in
+        the vector database.
 
         Args:
-            documents: List of documents
-        """
-        # TODO: Implement document ingestion logic
-        # HINT: Loop through each document in the documents list
-        # HINT: Extract 'content' and 'metadata' from each document dict
-        # HINT: Use self.chunk_text() to split each document into chunks
-        # HINT: Create unique IDs for each chunk (e.g., "doc_0_chunk_0")
-        # HINT: Use self.embedding_model.encode() to create embeddings for all chunks
-        # HINT: Store the embeddings, documents, metadata, and IDs in your vector database
-        # HINT: Print progress messages to inform the user
+            documents (list[dict]): List of documents, where each document
+                is a dictionary containing:
+                - 'content' (str): The text of the document.
+                - 'metadata' (dict): Any metadata associated with the document.
 
-        print(f"Processing {len(documents)} documents...")
-        # Your implementation here
+        Notes:
+            - Each chunk is assigned a unique ID for tracking.
+            - Metadata is copied for each chunk and includes a 'chunk_index'.
+            - Uses the class's `chunk_text` and `embedding_model`.
+            - Assumes `self.collection` is a ChromaDB collection ready to store data.
+        """
+        print(f"Processing and add {len(documents)} documents...")
+
+        all_chunks = []
+        all_metadatas = []
+        all_ids = []
+
+        for doc_idx, doc in enumerate(documents):
+            content = doc.get("content", "")
+            metadata = doc.get("metadata", {})
+
+            chunks = self.chunk_text(content)
+            for chunk_idx, chunk in enumerate(chunks):
+                all_chunks.append(chunk)
+
+                chunk_metadata = metadata.copy()
+                chunk_metadata["chunk_index"] = chunk_idx
+
+                all_metadatas.append(chunk_metadata)
+                all_ids.append(f"doc_{doc_idx}_chunk_{chunk_idx}")
+
+        if not all_chunks:
+            print("No text content found in documents to add.")
+            return
+
+        embeddings = self.embedding_model.encode(all_chunks, show_progress_bar=True)
+
+        self.collection.add(
+            embeddings=embeddings,
+            documents=all_chunks,
+            metadatas=all_metadatas,
+            ids=all_ids
+        )
+
         print("Documents added to vector database")
 
     def search(self, query: str, n_results: int = 5) -> Dict[str, Any]:
