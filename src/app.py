@@ -198,6 +198,19 @@ class RAGAssistant:
             "raw_retrieval": search_results
         }
 
+def format_rag_answer(raw_answer):
+    # Remove extra whitespace
+    text = " ".join(raw_answer.split())
+    
+    # Replace multiple periods or awkward punctuation
+    text = text.replace(" .", ".")
+    
+    # Optionally truncate or split long answers into paragraphs
+    paragraphs = text.split(". ")
+    formatted = ".\n".join(paragraphs)
+    
+    return formatted
+
 
 def main():
     """Main function to demonstrate the RAG assistant."""
@@ -221,7 +234,7 @@ def main():
                 done = True
             else:
                 result = assistant.query(question)
-                print(result)
+                print(format_rag_answer(result['answer']))
 
     except Exception as e:
         print(f"Error running RAG assistant: {e}")
