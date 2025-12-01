@@ -5,6 +5,9 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from vectordb import VectorDB
 from langchain_openai import ChatOpenAI
+from langchain_groq import ChatGroq
+from langchain_google_genai import ChatGoogleGenerativeAI
+
 
 
 # Load environment variables
@@ -117,6 +120,22 @@ class RAGAssistant:
                 api_key=os.getenv("OPENAI_API_KEY"), model=model_name, temperature=0.0
             )
 
+        elif os.getenv("GROQ_API_KEY"):
+            model_name = os.getenv("GROQ_MODEL", "llama-3.1-8b-instant")
+            print(f"Using Groq model: {model_name}")
+            return ChatGroq(
+                api_key=os.getenv("GROQ_API_KEY"), model=model_name, temperature=0.0
+            )
+
+        elif os.getenv("GOOGLE_API_KEY"):
+            model_name = os.getenv("GOOGLE_MODEL", "gemini-2.0-flash")
+            print(f"Using Google Gemini model: {model_name}")
+            return ChatGoogleGenerativeAI(
+                google_api_key=os.getenv("GOOGLE_API_KEY"),
+                model=model_name,
+                temperature=0.0,
+            )
+
         else:
             raise ValueError(
                 "No valid API key found. Please set one of: OPENAI_API_KEY, GROQ_API_KEY, or GOOGLE_API_KEY in your .env file"
@@ -131,7 +150,7 @@ class RAGAssistant:
         """
         self.vector_db.add_documents(documents)
 
-    def query(self, input: str, n_results: int = 3) -> Dict[str, Any]:
+    def query(self, input: str, n_results: int = 2) -> Dict[str, Any]:
         """
         Query the RAG assistant.
 
@@ -154,6 +173,8 @@ class RAGAssistant:
         # }
 
         retrieved_docs = search_results.get("documents", [])
+        if retrieved_docs and isinstance(retrieved_docs[0], list):
+            retrieved_docs = retrieved_docs[0]
         combined_context = "\n\n".join(retrieved_docs)
 
         # 2. Invoke LLM chain

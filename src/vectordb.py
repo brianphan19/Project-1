@@ -147,7 +147,7 @@ class VectorDB:
         results = self.collection.query(
             query_embeddings=query_embedding,
             n_results=n_results,
-            include=["documents", "metadatas", "distances", "ids"]
+            include=["documents", "metadatas", "distances"]
         )
 
         if not results or not results["documents"]:
