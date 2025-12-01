@@ -14,7 +14,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 load_dotenv()
 
 # Document directory
-_CONTENT_DIR = "data"
+_CONTENT_DIR = os.getenv("CONTENT_DIR")
 
 def load_documents() -> List[str]:
     """
